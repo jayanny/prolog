@@ -1,0 +1,49 @@
+%Jayanny Messias Da Silva
+%Árvore genealógica parte de mãe
+%Progenitores(pai ou mãe) estão declarados antes da virgula, filh@s depois da virgula.
+progenitor(ana,mariana).
+progenitor(antonio,mariana).
+progenitor(joaojorge,joao).
+progenitor(vicente,geraldo).
+progenitor(maria,geraldo).
+progenitor(mariana,noeme).
+progenitor(mariana,neide).
+progenitor(joao,noeme).
+progenitor(joao,neide).
+progenitor(noeme,jayanny).
+progenitor(noeme,jordany).
+progenitor(geraldo,jayanny).
+progenitor(geraldo,jordany).
+progenitor(neide,keyte).
+progenitor(neide,lucas).
+feminino(mariana).
+feminino(noeme).
+feminino(jayanny).
+feminino(jordany).
+feminino(neide).
+feminino(keyte).
+feminino(ana).
+feminino(maria).
+masculino(vicente).
+masculino(antonio).
+masculino(joaojorge).
+masculino(joao).
+masculino(geraldo).
+masculino(lucas).
+
+%regras.
+% exemplo: mae(noeme,Y).
+mae(X,Y):-feminino(X),progenitor(X,Y).
+pai(X,Y):-masculino(X),progenitor(X,Y).
+%exemplo: filhos(jayanny,Y).
+filhos(X,Y):-feminino(X),progenitor(Y,X).
+filhos(X,Y):-masculino(X),progenitor(Y,X).
+%exemplo: irmaos(jayanny,Y).
+irmaos(X,Y):-feminino(X),progenitor(A,X),progenitor(A,Y), X\==Y.
+irmaos(X,Y):-masculino(X),progenitor(A,X),progenitor(A,Y), X\==Y.
+%exemplo: avos(mariana,Y).
+avos(X,Y):-masculino(X),progenitor(X,C),progenitor(C,Y).
+avos(X,Y):-feminino(X),progenitor(X,C),progenitor(C,Y).
+%exemplo: bisavos(ana,Y).
+bisavos(X,Y):-feminino(X),progenitor(X,D),progenitor(D,E),progenitor(E,Y).
+bisavos(X,Y):-masculino(X),progenitor(X,D),progenitor(D,E),progenitor(E,Y).
